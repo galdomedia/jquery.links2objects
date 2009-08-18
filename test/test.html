@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>links2objects test page</title>
+    <script src="../lib/jquery-1.3.2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../jquery.links2objects-0.1.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function(){
+        $('#create_objects').click(function(){
+          $('body').links2objects({
+            flickr_api_key:'632297bfb9fb88d64df1ece752d79fdf'
+          });
+          return false;
+        })
+      });
+    </script>
+  </head>
+  <body id="links2object_test_body" onload="">
+    <br />
+    <a href="#" id="create_objects">Make objects from links</a>
+    <br><h3>YouTube</h3><br>
+    <br>
+    http://www.youtube.com/watch?v=LdSnZvseggw&feature=related
+    <br>
+    http://www.youtube.com/watch?v=mqlHEwmyPXw&feature=topvideos
+     
+    <br><br><br>
+    <h3>Flickr</h3>
+    <br>
+    http://www.flickr.com/photos/tasiu/3806777203/
+    
+    <br>
+    http://www.flickr.com/photos/tasiu/3806754115/
+    
+    <br><br><br>
+    
+  </body>
+  
+</html>
