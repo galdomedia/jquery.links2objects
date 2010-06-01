@@ -48,11 +48,11 @@
   }
   
   var youtube = function(html){
-    var link_regexp = /http:\/\/(www\.)?youtube\.com\/watch\/?\?v=([a-z0-9\-\_]+)(&amp;[a-z]+=.*)*/gi;
+    var link_regexp = /http:\/\/(www\.)?youtube\.com\/watch\/?\?v=([a-z0-9\-_]+)(&amp;[a-z]+=.*)*/gi;
     var m = html.match(link_regexp);
     if(m){
       for(var i = 0; i<m.length; i++){
-        var video_id = m[i].match(/v=([a-zA-Z0-9_]+)/i);
+        var video_id = m[i].match(/v=([a-zA-Z0-9\-_]+)/i);
         if(video_id[1]){
           video_id = video_id[1];
           var new_html = "<object width=\""+options.youtube_video_width+"\" height=\""+options.youtube_video_height+"\"> \
