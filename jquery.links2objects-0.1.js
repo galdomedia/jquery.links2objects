@@ -17,6 +17,7 @@
     var link_regexp = /http:\/\/www.flickr.com\/photos\/([a-z]+)\/(\d+)\/?/gi;
     var m = html.match(link_regexp);
     if(m){
+      var len = m.length;
       for(var i = 0; i<m.length; i++){
         var photo_id = m[i].match(/\d+/)[0];
         var request_link = 'http://api.flickr.com/services/rest/?format=json&method=flickr.photos.getSizes&photo_id='+photo_id+'&api_key='+options.flickr_api_key+'&jsoncallback=?';
@@ -27,7 +28,8 @@
               var sizes = data;
               if(sizes.sizes && sizes.sizes.size && data.stat && data.stat=="ok"){
                 sizes = sizes.sizes.size;
-                for(var j=0;j<sizes.length; j++){
+                var len2 = sizes.length;
+                for(var j=0;j<len2; j++){
                   if(sizes[j]["label"].toLowerCase()==options.flickr_size){
                     var old_link = sizes[j].url.match(link_regexp)[0];
                     var new_html = '<a href="'+old_link+'"><img src="'+sizes[j].source+'" /></a>';
@@ -51,7 +53,8 @@
     var link_regexp = /http:\/\/www.youtube.com\/watch\/?\?v=([a-z0-9\-\_]+)(&amp;[a-z]+=.*)*/gi;
     var m = html.match(link_regexp);
     if(m){
-      for(var i = 0; i<m.length; i++){
+      var len = m.length;
+      for(var i = 0; i<len; i++){
         var video_id = m[i].match(/v=([a-zA-Z0-9]+)/i);
         if(video_id[1]){
           video_id = video_id[1];
