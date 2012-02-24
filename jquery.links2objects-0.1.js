@@ -71,22 +71,25 @@
     }
   };
 
- var vimeo = function(html){
-   var link_regexp = /http:\/\/(www\.)?vimeo\.com\/([0-9]+)/gi;
-   var m = html.match(link_regexp);
-   if(!m || m.length == 0) return;
+  var vimeo = function(html){
+    var link_regexp = /http:\/\/(www\.)?vimeo\.com\/([0-9]+)/gi;
+    var m = html.match(link_regexp);
+    if(!m || m.length == 0) return;
 
-   for(var i = (m.length - 1); i>=0; i--){
-     var url = m[i];
-     $.getJSON('http://vimeo.com/api/oembed.json?url=' + url + '&callback=?', function(data){
-       var html = data.html;
-       html = html.replace(/width\=\"(\d)+\"/, 'width="' +  options.vimeo_video_width + '"');
-       html = html.replace(/height\=\"(\d)+\"/, 'height="' +  options.vimeo_video_height + '"');
+    for(var i = (m.length - 1); i>=0; i--){
+      var url = m[i];
+      var json_url = 'http://vimeo.com/api/oembed.json';
+      json_url += '?url=' + url;
+      json_url += '&width=' + options.vimeo_video_width;
+      json_url += '&height=' + options.vimeo_video_height;
+      json_url += '&callback=?';
 
-       global_obj.html(global_obj.html().replace(url, html));
-     });
-   }
- };
+      $.getJSON(json_url, function(data){
+        var html = data.html;
+        global_obj.html(global_obj.html().replace(url, html));
+      });
+    }
+  };
 
   var sites_functions = {'flickr': flickr, 'picasa': this.picasa, 'youtube': youtube, 'vimeo': vimeo };
 
