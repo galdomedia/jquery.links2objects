@@ -84,10 +84,13 @@
       json_url += '&height=' + options.vimeo_video_height;
       json_url += '&callback=?';
 
-      $.getJSON(json_url, function(data){
-        var html = data.html;
-        global_obj.html(global_obj.html().replace(url, html));
-      });
+      (function(){
+        var u = url;
+        $.getJSON(json_url, function(data){
+          var html = data.html;
+          global_obj.html(global_obj.html().replace(u, html));
+        });
+      })();
     }
   };
 
